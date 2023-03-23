@@ -1,0 +1,203 @@
+{
+	"info": {
+		"_postman_id": "42a8f3cc-1ce7-4bc5-ba85-75a0f6fef7f1",
+		"name": "SKYSCANNER",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "3439157"
+	},
+	"item": [
+		{
+			"name": "Itenerary",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", () => {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "{{x-api-key}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"query\": {\r\n        \"market\": \"UK\",\r\n        \"locale\": \"en-GB\",\r\n        \"currency\": \"GBP\",\r\n        \"query_legs\": [\r\n            {\r\n                \"origin_place_id\": {\r\n                    \"iata\": \"LHR\"\r\n                },\r\n                \"destination_place_id\": {\r\n                    \"iata\": \"SIN\"\r\n                },\r\n                \"date\": {\r\n                    \"year\": 2023,\r\n                    \"month\": 12,\r\n                    \"day\": 22\r\n                }\r\n            }\r\n        ],\r\n        \"adults\": 2,\r\n        \"cabin_class\": \"CABIN_CLASS_BUSINESS\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{Endpoint}}/apiservices/v3/flights/live/search/create",
+					"host": [
+						"{{Endpoint}}"
+					],
+					"path": [
+						"apiservices",
+						"v3",
+						"flights",
+						"live",
+						"search",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "FlightHirearchy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const resp = pm.response.json()\r",
+							"\r",
+							"pm.test(\"Status code is 200\", () => {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(resp.status);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "{{x-api-key}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{Endpoint}}/apiservices/v3/geo/hierarchy/flights/en-GB",
+					"host": [
+						"{{Endpoint}}"
+					],
+					"path": [
+						"apiservices",
+						"v3",
+						"geo",
+						"hierarchy",
+						"flights",
+						"en-GB"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateHirearchy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Successful POST request\", function () {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([201, 200]);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 200ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "{{x-api-key}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"locator\": {\r\n        \"coordinates\": {\r\n            \"latitude\": 51.5072,\r\n            \"longitude\": 0.1276\r\n        }\r\n    },\r\n    \"locale\": \"en-GB\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{Endpoint}}/apiservices/v3/geo/hierarchy/flights/nearest",
+					"host": [
+						"{{Endpoint}}"
+					],
+					"path": [
+						"apiservices",
+						"v3",
+						"geo",
+						"hierarchy",
+						"flights",
+						"nearest"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Carrier",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "{{x-api-key}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{Endpoint}}/apiservices/v3/flights/carriers",
+					"host": [
+						"{{Endpoint}}"
+					],
+					"path": [
+						"apiservices",
+						"v3",
+						"flights",
+						"carriers"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
