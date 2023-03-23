@@ -5,8 +5,8 @@ Run collections.
 
 ## Test Plan
 
-Define the API endpoints to be tested and the scope of the testing.
-Identify the input parameters required by each API endpoint, including headers, query parameters, and request bodies.
+*Define the API endpoints to be tested and the scope of the testing.
+*Identify the input parameters required by each API endpoint, including headers, query parameters, and request bodies.
 Identify the expected output for each API endpoint, including response codes, response bodies, and any other relevant output.
 Determine the automation framework and tools to be used for testing the API endpoints.
 Develop test cases that cover all possible scenarios for the API endpoints, including both positive and negative test cases.
