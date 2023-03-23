@@ -17,7 +17,7 @@ Run collections.
 * Integrate the API automation testing with the CI/CD pipeline for continuous testing and deployment.
 * Ensure that the API automation test plan is maintained and updated as new features and endpoints are added to the API.
 
-# How would you Integrate API tests with CI/CD pipelines ?
+## How would you Integrate API tests with CI/CD pipelines ?
 
 * Create a repository in Github: Create a new repository in Github to store UI/API tests.
 * Clone the repository to your local machine: Clone the repository to your local machine using Git or Github Desktop.
